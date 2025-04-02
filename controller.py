@@ -88,7 +88,10 @@ def cancel_shutdown():
     '''
     This function is responsible for cancelling the scheduled shutdown.
     '''
-    pass
+    global running  # Get the global variable running
+    running = False  # Set the running state to False
+    messagebox.showinfo('取消', '您已取消关机')  # Show a message box to inform the user that the shutdown has been cancelled
+
 
 
 def change_time():
@@ -117,3 +120,4 @@ def countdown(countdown_data):
         seconds %= 60  # Get the remaining seconds
         countdown_data['count_time'].set(f'{hour:02d}:{minute:02d}:{seconds:02d}')  # Update the countdown window with the remaining time
         sleep(1)  # Sleep for 1 second
+    

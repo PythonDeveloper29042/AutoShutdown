@@ -180,14 +180,14 @@ git clone https://github.com/PythonDeveloper29042/AutoShutdown.git
 要在Windows上运行程序，您可以打开命令提示符并导航到`AutoShutdown`文件夹。然后，运行以下命令：
 ```bash
 cd C:\path\to\AutoShutdown
-python view.py
+python main.py
 ```
 确保将`C:\path\to\AutoShutdown`替换为`AutoShutdown`文件夹的实际路径。
 ### macOS和Linux上运行程序
 要在macOS或Linux上运行程序，您可以打开终端并导航到`AutoShutdown`文件夹。然后，运行以下命令：
 ```bash
 cd /path/to/AutoShutdown
-python3 view.py
+python3 main.py
 ```
 确保将`/path/to/AutoShutdown`替换为`AutoShutdown`文件夹的实际路径。
 ### 如何使用程序
@@ -199,7 +199,7 @@ python3 view.py
 如果你当初点击**自定义时间**，程序会有一个新窗口，你可以在日历小部件上选择日期，并在两个下拉框中选择时间，请注意，第一个下拉框是小时，第二个下拉框是分钟。选择日期和时间后，单击**确认**按钮以设置关机时间。
 
 ## MIT 许可证
-此项目根据MIT许可证获得许可。有关详细信息，请参阅[LICENSE](LICENSE)文件。
+此项目根据MIT许可证获得许可。有关详细信息，请参阅[LICENSE](LICENSE.txt)文件。
 
 ## 询问
 如果你有任何疑问，你可以打开一个issue或者在[这里](mailto:pythondeveloper.29042@outlook.com)联系我。
@@ -331,14 +331,14 @@ To run the program graphically, you can open Visual Studio Code and open the `Au
 To run the program in Windows, you can open the command prompt and navigate to the `AutoShutdown` folder. Then, run the following command:
 ```bash
 cd C:\path\to\AutoShutdown
-python view.py
+python main.py
 ```
 Make sure to replace `C:\path\to\AutoShutdown` with the actual path to the `AutoShutdown` folder.
 ### Run the program in macOS & Linux
 To run the program in macOS or Linux, you can open the terminal and navigate to the `AutoShutdown` folder. Then, run the following command:
 ```bash
 cd /path/to/AutoShutdown
-python3 view.py
+python3 main.py
 ```
 Make sure to replace `/path/to/AutoShutdown` with the actual path to the `AutoShutdown` folder.
 ### How to use the program

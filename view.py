@@ -38,6 +38,8 @@ def add_components_to_main_window():
     This function is responsible for adding the components to the main window.
     '''
     global model_time  # Make model_time a global variable to access it in other functions
+    for child in root.winfo_children():
+        child.destroy()  # Destroy all the child widgets in the main window
     # The label that displays the title of the application
     title = Label(root, text='AutoShutdown', font=('SimSun', 18, 'bold'))
     title.pack(pady=20)
@@ -60,7 +62,7 @@ def add_components_to_main_window():
     shutdown_after_label.pack()
 
     # Add another button to set the time
-    set_button = Button(root, text='确认', font=('SimSun',10,'normal'), command=confirm_shutdown_custom)
+    set_button = Button(root, text='确认', font=('SimSun',10,'normal'), command=confirm_shutdown)
     set_button.pack()
 
     # Add another button to customize the time
@@ -135,7 +137,7 @@ def add_components_to_countdown_window():
     remaining_time_label.pack(pady=20)
 
     # Add a button to cancel the shutdown
-    cancel_button = Button(root, text='取消关机', font=('SimSun', 10, 'normal'))
+    cancel_button = Button(root, text='取消关机', font=('SimSun', 10, 'normal'), command=cancel_shutdown)
     cancel_button.pack(pady=20)
 
 
@@ -148,11 +150,14 @@ def confirm_shutdown():
 
 
         
-def countdown():
+def cancel_shutdown():
     '''
-    
+    This function is responsible for cancelling the scheduled shutdown.
     '''
-    pass
+    controller.cancel_shutdown()
+    # print('cancel shutdown')  # Print the message for debugging purposes
+    add_components_to_main_window()  # Add the components back to the main window
+
 
 
 def confirm_shutdown_custom():
@@ -169,7 +174,7 @@ def confirm_shutdown_custom():
         messagebox.showerror('警告', '小时和时间不能为空！你是不是傻逼？')  # Show an error message if the hour or minute is empty
         return
     target_time = date.replace(year=int(year)+2000, month=int(month), day=int(day), hour=int(hour[:-1]), minute=int(minute[:-1]), second=0)
-    controller.shutdown_custom(target_time, end_time=end_time, count_time=count_time,callback=add_components_to_countdown_window)  # Call the controller to set the custom shutdown time
+    controller.shutdown_custom(target_time, end_time=end_time, count_time=count_time, callback=add_components_to_countdown_window)  # Call the controller to set the custom shutdown time
     
 
 def main():
