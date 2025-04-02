@@ -111,7 +111,14 @@ def add_components_to_countdown_window():
     for child in root.winfo_children():
         child.destroy()
     root.title('倒计时')  # Set the title of the countdown window
-    root.geometry('400x300+100+100')  # Set the size and position of the countdown window
+    width = 400  # Set the width of the window
+    height = 300  # Set the height of the window
+    sceen_width = root.winfo_screenwidth()  # Get the width of the screen
+    screen_height = root.winfo_screenheight()  # Get the height of the screen
+    pos_x = (sceen_width - width) // 2  # Calculate the x-coordinate of the window
+    pos_y = (screen_height - height) // 2  # Calculate the y-coordinate of the window
+    root.geometry(f'{width}x{height}+{pos_x}+{pos_y}')  # Set the size and position of the window
+    # root.geometry('400x300+100+100')  # Set the size and position of the countdown window
     root.iconbitmap(r'.\assets\icons\AutoShutdown_16x16.ico')  # Set the icon of the countdown window
     root.resizable(False, False)  # Disable resizing of the countdown window
 
@@ -162,8 +169,8 @@ def confirm_shutdown_custom():
         messagebox.showerror('警告', '小时和时间不能为空！你是不是傻逼？')  # Show an error message if the hour or minute is empty
         return
     target_time = date.replace(year=int(year)+2000, month=int(month), day=int(day), hour=int(hour[:-1]), minute=int(minute[:-1]), second=0)
-    controller.shutdown_custom(target_time, end_time=end_time, count_time=count_time)  # Call the controller to set the custom shutdown time
-
+    controller.shutdown_custom(target_time, end_time=end_time, count_time=count_time,callback=add_components_to_countdown_window)  # Call the controller to set the custom shutdown time
+    
 
 def main():
     '''

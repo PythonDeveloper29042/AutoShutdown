@@ -38,7 +38,7 @@ def shutdown_model(time: datetime, **countdown_data):
     running = True  # Set the running state to True
     count_secs = future_time.total_seconds()  # Get the total number of seconds
 
-    #
+
     year = current_time.year
     month = current_time.month
     day = current_time.day
@@ -58,13 +58,30 @@ def shutdown_custom(time: datetime, **countdown_data):
         time (datetime): The time at which the system should be shut down.
         **countdown_data: The data required for the countdown.
     '''
-    print(time, countdown_data)
+    global running, count_secs  # Get the global variable running and count_secs
+    # print(time, countdown_data)  # Print the time and countdown data for debugging purposes
     current_time = datetime.now()  # Get the current time
     if time <= current_time:  # Check if the selected time is in the past
         messagebox.showerror('错误', '选择的时间已经过去了！你他妈只能选择未来的时间！')  # Show error message if the selected time is in the past
         return
-    total_secs = (time - current_time).total_seconds()  # Calculate the total number of seconds
-    
+    count_secs = (time - current_time).total_seconds()  # Calculate the total number of seconds
+    running = True  # Set the running state to True
+
+    # current_time = datetime.now()  # Get the current time
+    # if '秒' in time:  # Check if the time contains '秒' ('seconds')
+    #     future_time = timedelta(seconds=int(time[:-1]))  # Get the future time in seconds
+    # if '分钟' in time:  # Check if the time contains '分钟' ('minutes')
+    #     future_time = timedelta(minutes=int(time[:-2]))  # Get the future time in minutes
+    # if '小时' in time:  # Check if the time contains '小时' ('hours')
+    #     future_time = timedelta(hours=int(time[:-2]))  # Get the future time in hours
+    # current_time += future_time  # Add the future time to the current time        
+    # running = True  # Set the running state to True
+    # count_secs = future_time.total_seconds()  # Get the total number of seconds
+
+    countdown_data['end_time'].set(f'系统将在{time.year}年{time.month:02d}月{time.day:02d}日{time.hour:02d}:{time.minute:02d}:{time.second:02d}关机')  # Set the end time in the countdown data
+    th = Thread(target=countdown, args=(countdown_data,))  # Create a new thread for the countdown function
+    th.start()  # Start the thread
+    countdown_data["callback"]()
 
 
 def cancel_shutdown():
