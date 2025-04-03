@@ -27,6 +27,9 @@
         - [Windows上运行程序](#windows上运行程序)
         - [macOS和Linux上运行程序](#macos和Linux上运行程序)
         - [如何使用程序](#如何使用程序)
+    - [生成可执行文件](#生成可执行文件)
+        - [Windows上生成可执行文件](#windows上生成可执行文件)
+        - [macOS和Linux上生成可执行文件](#macos和linux上生成可执行文件)
     - [许可](#MIT-许可证)
     - [询问](#询问)
     - [结语](#结语)
@@ -197,6 +200,34 @@ python3 main.py
 然后，窗口中将显示一个倒计时计时器。您可以单击**取消**按钮以取消关机。
 
 如果你当初点击**自定义时间**，程序会有一个新窗口，你可以在日历小部件上选择日期，并在两个下拉框中选择时间，请注意，第一个下拉框是小时，第二个下拉框是分钟。选择日期和时间后，单击**确认**按钮以设置关机时间。
+
+## 生成可执行文件
+### Windows上生成可执行文件
+要在Windows上生成可执行文件，您可以使用以下命令：
+```bash
+cd C:\path\to\AutoShutdown 
+pyinstaller -F -w -i .\assets\icons\AutoShutdown_256x256.ico .\main.py 
+xcopy .\assets\icons .\dist\AutoShutdown\assets\icons /E /I /Y
+ren .\dist\AutoShutdown\main.exe .\dist\AutoShutdown\AutoShutdown.exe
+```
+步骤解析：
+- `cd C:\path\to\AutoShutdown`：进入`AutoShutdown`文件夹。请将`C:\path\to\AutoShutdown`替换为`AutoShutdown`文件夹的实际路径。
+- `pyinstaller -F -w -i .\assets\icons\AutoShutdown_256x256.ico .\main.py`：使用PyInstaller生成可执行文件，`-F`表示生成单个可执行文件，`-w`表示不显示命令行窗口，`-i`表示指定图标。
+- `xcopy .\assets\icons .\dist\AutoShutdown\assets\icons /E /I /Y`：将图标文件夹复制到可执行文件所在的文件夹。
+- `ren .\dist\AutoShutdown\main.exe .\dist\AutoShutdown\AutoShutdown.exe`：将可执行文件重命名为`AutoShutdown.exe`。
+### macOS和Linux上生成可执行文件
+要在macOS或Linux上生成可执行文件，您可以使用以下命令：
+```bash
+cd /path/to/AutoShutdown
+pyinstaller -F -w -i ./assets/icons/AutoShutdown_256x256.ico ./main.py
+cp -r ./assets/icons ./dist/AutoShutdown/assets/icons
+mv ./dist/main ./dist/AutoShutdown
+```
+步骤解析：
+- `cd /path/to/AutoShutdown`：进入`AutoShutdown`文件夹。请将`/path/to/AutoShutdown`替换为`AutoShutdown`文件夹的实际路径。
+- `pyinstaller -F -w -i ./assets/icons/AutoShutdown_256x256.ico ./main.py`：使用PyInstaller生成可执行文件，`-F`表示生成单个可执行文件，`-w`表示不显示命令行窗口，`-i`表示指定图标。
+- `cp -r ./assets/icons ./dist/AutoShutdown/assets/icons`：将图标文件夹复制到可执行文件所在的文件夹。
+- `mv ./dist/main ./dist/AutoShutdown`：将可执行文件重命名为`AutoShutdown`。
 
 ## MIT 许可证
 此项目根据MIT许可证获得许可。有关详细信息，请参阅[LICENSE](LICENSE.txt)文件。

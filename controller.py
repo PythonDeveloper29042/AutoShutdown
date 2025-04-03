@@ -46,7 +46,7 @@ def shutdown_model(time: datetime, **countdown_data):
     minute = current_time.minute
     second = current_time.second
 
-    countdown_data['end_time'].set(f'系统将于{year}年{month}月{day}日{hour}:{minute}:{second}关机')
+    countdown_data['end_time'].set(f'系统将于{year}年{month:02d}月{day:02}日{hour:02d}:{minute:02d}:{second:02d}关机')
     th = Thread(target=countdown, args=(countdown_data,))  # Create a new thread for the countdown function
     th.start()  # Start the thread
 
