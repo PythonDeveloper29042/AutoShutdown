@@ -46,7 +46,7 @@ def add_components_to_main_window():
 
     # The label that displays the description of the operation
     # label = Label(root, text='Choose the time at which the system should be shut down:')
-    label = Label(root, text='选择系统应该关机的时间:', font=('SimSun',10,'normal'))
+    label = Label(root, text='选择系统应关机的时间:', font=('SimSun',10,'normal'))
     label.pack()
 
     # # button = Button(root, text='Set')
@@ -58,7 +58,7 @@ def add_components_to_main_window():
     model_time.pack(pady=10)
 
     # Add another label that displays 'Shutdown after:'
-    shutdown_after_label = Label(root, text='后关机', font=('SimSun',10,'normal'))
+    shutdown_after_label = Label(root, text='系统将于上述时间后关机', font=('SimSun',10,'normal'))
     shutdown_after_label.pack()
 
     # Add another button to set the time
@@ -86,7 +86,7 @@ def add_components_to_customize_window():
     customize_window.resizable(False, False)  # Disable resizing of the new window
 
     # Add the prompt to the new window
-    prompt = Label(customize_window, text='请选择系统关机的时间：', font=('SimSun', 10, 'normal'))
+    prompt = Label(customize_window, text='请选择系统关机时间：', font=('SimSun', 10, 'normal'))
     prompt.pack()
 
     # Add the calendar to choose the date
