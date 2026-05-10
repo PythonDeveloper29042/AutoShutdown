@@ -171,7 +171,7 @@ def confirm_shutdown_custom():
     hour = hours.get()  # Get the selected hour from the combobox
     minute = minutes.get()  # Get the selected minute from the combobox
     if not hour or not minute:
-        messagebox.showerror('警告', '小时和时间不能为空！你是不是傻逼？')  # Show an error message if the hour or minute is empty
+        messagebox.showwarning('警告', 'WARNING 1\n日期或时间不完整')  # Show an error message if the hour or minute is empty
         return
     target_time = date.replace(year=int(year)+2000, month=int(month), day=int(day), hour=int(hour[:-1]), minute=int(minute[:-1]), second=0)
     controller.shutdown_custom(target_time, end_time=end_time, count_time=count_time, callback=add_components_to_countdown_window)  # Call the controller to set the custom shutdown time
