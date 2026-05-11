@@ -12,9 +12,9 @@ import controller
 
 root = Tk()
 end_time = StringVar()  # Variable to store the end time
-end_time.set('')  # Set the default value of the end time to an empty string
+end_time.set('系统将于以下时间关机：\n1970-01-01 00:00:00')  # Set the default value of the end time to a placeholder
 count_time = StringVar()  # Variable to store the countdown time
-count_time.set('')  # Set the default value of the countdown time to an empty string
+count_time.set('00:00:00')  # Set the default value of the countdown time to a placeholder
 
 
 def setup():
