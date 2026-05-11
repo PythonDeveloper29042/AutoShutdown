@@ -25,7 +25,7 @@ def shutdown_model(time: datetime, **countdown_data):
     global running, count_secs  # Get the global variable running and count_secs
     # Check if the time is empty or not
     if time.strip() == '':
-        messagebox.showerror('错误', 'ERROR 1\n选择的时间不能为空，请重选')  # Show error message if time is empty
+        messagebox.showerror('错误', 'ERROR 1: 选择的时间不能为空，请重选')  # Show error message if time is empty
         return
     current_time = datetime.now()  # Get the current time
     if '秒' in time:  # Check if the time contains '秒' ('seconds')
@@ -46,7 +46,7 @@ def shutdown_model(time: datetime, **countdown_data):
     minute = current_time.minute
     second = current_time.second
 
-    countdown_data['end_time'].set(f'系统将于以下时间关机：\n{current_time.isoformat()[:19]}')  # Set the end time in the countdown data
+    countdown_data['end_time'].set(f'系统将于以下时间关机：\n{current_time.strftime("%Y-%m-%d %H:%M:%S")}')  # Set the end time in the countdown data
     th = Thread(target=countdown, args=(countdown_data,))  # Create a new thread for the countdown function
     th.start()  # Start the thread
 
@@ -62,7 +62,7 @@ def shutdown_custom(time: datetime, **countdown_data):
     # print(time, countdown_data)  # Print the time and countdown data for debugging purposes
     current_time = datetime.now()  # Get the current time
     if time <= current_time:  # Check if the selected time is in the past
-        messagebox.showerror('错误', 'ERROR 2\n选择的时间不能早于当前时间，请重选')  # Show error message if the selected time is in the past
+        messagebox.showerror('错误', 'ERROR 2: 选择的时间不能早于当前时间，请重选')  # Show error message if the selected time is in the past
         return
     count_secs = (time - current_time).total_seconds()  # Calculate the total number of seconds
     running = True  # Set the running state to True
@@ -78,7 +78,7 @@ def shutdown_custom(time: datetime, **countdown_data):
     # running = True  # Set the running state to True
     # count_secs = future_time.total_seconds()  # Get the total number of seconds
 
-    countdown_data['end_time'].set(f'系统将于以下时间关机：\n{time.isoformat()[:19]}')  # Set the end time in the countdown data
+    countdown_data['end_time'].set(f'系统将于以下时间关机：\n{time.strftime("%Y-%m-%d %H:%M:%S")}')  # Set the end time in the countdown data
     th = Thread(target=countdown, args=(countdown_data,))  # Create a new thread for the countdown function
     th.start()  # Start the thread
     countdown_data["callback"]()
